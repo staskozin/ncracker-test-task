@@ -3,6 +3,13 @@
   --text-color: #fff;
 }
 
+@font-face {
+  font-family: Roboto;
+  src:
+    url(/font/roboto.woff2) format(woff2),
+    url(/font/roboto.ttf) format(truetype);
+}
+
 body {
   background: var(--background-color);
   color: var(--text-color);
