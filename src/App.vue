@@ -1,14 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import PageHeader from './components/PageHeader.vue';
 </script>
 
 <template>
-  <header>
+  <PageHeader />
+
     <nav>
       <RouterLink to="/">Главная</RouterLink>
       <RouterLink to="/movie">Фильм</RouterLink>
     </nav>
-  </header>
-
   <RouterView />
 </template>
