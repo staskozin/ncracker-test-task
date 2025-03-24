@@ -19,7 +19,7 @@
     font-size: 48px;
     line-height: 1;
     font-weight: bold;
-    letter-spacing: 21%;
+    letter-spacing: 0.21em;
   }
 }
 </style>
