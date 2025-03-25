@@ -13,6 +13,7 @@
   padding: 36px 0 16px;
   position: sticky;
   top: 0;
+  z-index: 1;
 
   &__text {
     display: block;

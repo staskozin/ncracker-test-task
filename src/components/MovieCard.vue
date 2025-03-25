@@ -65,19 +65,23 @@ const props = defineProps({
         :alt="props.title"
       >
     </div>
-    <div>
+    <div class="card__right">
       <div class="card__top">
         <RouterLink
           v-if="props.link"
           :to="props.link"
           class="titlelink"
         >
-          <h2 class="title">{{ props.title }}</h2>
+          <h2
+            class="title"
+            v-html="props.title"
+          ></h2>
         </RouterLink>
         <h2
           v-else
+          v-html="props.title"
           class="title"
-        >{{ props.title }}</h2>
+        ></h2>
         <div
           v-if="props.duration"
           class="duration-wrap"
@@ -88,13 +92,21 @@ const props = defineProps({
           </div>
         </div>
       </div>
-      <span class="metatext">{{ props.year }}, {{ props.genres.join(', ') }}</span>
-      <span class="metatext">Режиссёр: {{ props.directors.join(', ') }}</span>
-      <div class="actors-wrap">
-        <span class="metatext">Актёры:</span>
-        <span class="actors">{{ props.actors.join(', ') }}</span>
+      <div class="card__bottom">
+        <span class="metatext">{{ props.year }}, {{ props.genres.join(', ') }}</span>
+        <span
+          v-if="props.directors.length > 0"
+          class="metatext"
+        >Режиссёр: {{ props.directors.join(', ') }}</span>
+        <div
+          v-if="props.actors.length > 0"
+          class="actors-wrap"
+        >
+          <span class="metatext">Актёры:</span>
+          <span class="actors">{{ props.actors.join(', ') }}</span>
+        </div>
+        <p class="description">{{ props.description }}</p>
       </div>
-      <p class="description">{{ props.description }}</p>
     </div>
   </div>
 </template>
@@ -123,11 +135,19 @@ const props = defineProps({
     background-color: var(--card-ribbon-color);
   }
 
+  &__right {
+    width: 100%;
+  }
+
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
+  }
+
+  &__bottom {
+    padding-right: 24px;
   }
 }
 
