@@ -1,6 +1,10 @@
 <script setup>
 import HorizontalRule from '@/components/HorizontalRule.vue';
 import MovieCard from '@/components/MovieCard.vue';
+import { useMoviesStore } from '@/stores/movies';
+
+const moviesStore = useMoviesStore()
+moviesStore.fetchMovies()
 </script>
 
 <template>
@@ -8,28 +12,18 @@ import MovieCard from '@/components/MovieCard.vue';
   <HorizontalRule />
   <div class="cards">
     <MovieCard
-      poster="https://image.openmoviedb.com/kinopoisk-images/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/orig"
-      title="Побег из Шоушенка"
-      :year="1994"
-      description="Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием, царящими по обе стороны решётки. Каждый, кто попадает в эти стены, становится их рабом до конца жизни. Но Энди, обладающий живым умом и доброй душой, находит подход как к заключённым, так и к охранникам, добиваясь их особого к себе расположения."
-      :genres="['Драма']"
-      :directors="['Фрэнк Дарабонт']"
-      :actors="['Тим Роббинс', 'Морган Фриман', 'Боб Гантон', 'Уильям Сэдлер', 'Клэнси Браун', 'Джил Беллоуз', 'Марк Ролстон', 'Джеймс Уитмор', 'Джеффри ДеМанн', 'Ларри Бранденбург', 'Диомид Виноградов', 'Игорь Старосельцев', 'Никита Прозоровский', 'Олег Вирозуб', 'Василий Дахненко']"
-      duration="142 мин. / 02:22"
+      v-for="m in moviesStore.movies"
+      :key="m.id"
+      :poster="m.poster"
+      :title="m.title"
+      :year="m.year"
+      :description="m.description"
+      :genres="m.genres"
+      :directors="m.directors || []"
+      :actors="m.actors || []"
+      :duration="m.collapse.duration ? m.collapse.duration[0] : undefined"
       :animated-hover="true"
-      link="/movie"
-    />
-    <MovieCard
-      poster="https://image.openmoviedb.com/kinopoisk-images/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/orig"
-      title="Побег из Шоушенка"
-      :year="1994"
-      description="Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием, царящими по обе стороны решётки. Каждый, кто попадает в эти стены, становится их рабом до конца жизни. Но Энди, обладающий живым умом и доброй душой, находит подход как к заключённым, так и к охранникам, добиваясь их особого к себе расположения."
-      :genres="['Драма']"
-      :directors="['Фрэнк Дарабонт']"
-      :actors="['Тим Роббинс', 'Морган Фриман', 'Боб Гантон', 'Уильям Сэдлер', 'Клэнси Браун', 'Джил Беллоуз', 'Марк Ролстон', 'Джеймс Уитмор', 'Джеффри ДеМанн', 'Ларри Бранденбург', 'Диомид Виноградов', 'Игорь Старосельцев', 'Никита Прозоровский', 'Олег Вирозуб', 'Василий Дахненко']"
-      duration="142 мин. / 02:22"
-      :animated-hover="true"
-      link="/movie"
+      :link="'/movie/' + m.id"
     />
   </div>
 </template>
