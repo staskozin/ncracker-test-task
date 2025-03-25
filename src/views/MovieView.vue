@@ -1,6 +1,6 @@
 <script setup>
 import HorizontalRule from '@/components/HorizontalRule.vue';
-import ArrowBack from '@/components/icons/ArrowBack.vue';
+import IconArrow from '@/components/icons/IconArrow.vue';
 import { RouterLink } from 'vue-router';
 </script>
 
@@ -9,7 +9,7 @@ import { RouterLink } from 'vue-router';
     to="/"
     class="backlink"
   >
-    <ArrowBack />
+    <IconArrow />
     Назад к списку
   </RouterLink>
   <HorizontalRule />
