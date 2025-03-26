@@ -1,6 +1,8 @@
 <script setup>
+import AnimatedLoader from '@/components/AnimatedLoader.vue';
 import HorizontalRule from '@/components/HorizontalRule.vue';
 import MovieCard from '@/components/MovieCard.vue';
+import NotFound from '@/components/NotFound.vue';
 import { useMoviesStore } from '@/stores/movies';
 
 const moviesStore = useMoviesStore()
@@ -10,7 +12,12 @@ moviesStore.fetchMovies()
 <template>
   <h1 class="main-header">Фильмы</h1>
   <HorizontalRule />
-  <div class="cards">
+  <AnimatedLoader v-if="moviesStore.loading" />
+  <NotFound v-else-if="moviesStore.movies.length === 0" />
+  <div
+    v-else
+    class="cards"
+  >
     <MovieCard
       v-for="m in moviesStore.movies"
       :key="m.id"

@@ -1,7 +1,9 @@
 <script setup>
+import AnimatedLoader from '@/components/AnimatedLoader.vue';
 import HorizontalRule from '@/components/HorizontalRule.vue';
 import IconArrow from '@/components/icons/IconArrow.vue';
 import MovieCard from '@/components/MovieCard.vue';
+import NotFound from '@/components/NotFound.vue';
 import { useMoviesStore } from '@/stores/movies';
 import { RouterLink, useRoute } from 'vue-router';
 const route = useRoute()
@@ -18,6 +20,8 @@ moviesStore.fetchMovie(route.params.id)
     Назад к списку
   </RouterLink>
   <HorizontalRule />
+  <AnimatedLoader v-if="moviesStore.loading" />
+  <NotFound v-else-if="moviesStore.currentMovie === null" />
   <MovieCard
     v-if="moviesStore.currentMovie"
     :key="moviesStore.currentMovie.id"
