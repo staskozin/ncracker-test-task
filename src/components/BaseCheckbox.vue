@@ -46,6 +46,7 @@ const model = defineModel({
   color: var(--card-ribbon-color);
   font-size: 16px;
   line-height: 1;
+  cursor: pointer;
 
   &__input {
     display: none;
