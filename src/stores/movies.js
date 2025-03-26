@@ -19,12 +19,14 @@ export const useMoviesStore = defineStore('movies', {
         console.error(error)
         this.movies = []
       }
+      document.title = '#MOVIENOW'
     },
     async fetchMovie(id) {
       if (this.movies.length > 0) {
         const found = this.movies.find((i) => i.id === Number.parseInt(id))
         if (found) {
           this.currentMovie = found
+          document.title = this.currentMovie.title + ' — #MOVIENOW'
           return
         }
       }
@@ -38,6 +40,8 @@ export const useMoviesStore = defineStore('movies', {
         console.error(error)
         this.currentMovie = null
       }
+      document.title =
+        (this.currentMovie ? this.currentMovie.title : 'Фильм не найден') + ' — #MOVIENOW'
     },
   },
 })
