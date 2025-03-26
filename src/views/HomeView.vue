@@ -1,5 +1,6 @@
 <script setup>
 import AnimatedLoader from '@/components/AnimatedLoader.vue';
+import BaseCheckbox from '@/components/BaseCheckbox.vue';
 import HorizontalRule from '@/components/HorizontalRule.vue';
 import MovieCard from '@/components/MovieCard.vue';
 import NotFound from '@/components/NotFound.vue';
@@ -11,6 +12,18 @@ moviesStore.fetchMovies()
 
 <template>
   <h1 class="main-header">Фильмы</h1>
+  <div class="checkboxes">
+    <BaseCheckbox
+      label="Отсортировать по названию"
+      name="title"
+      v-model="moviesStore.titleCheckboxChecked"
+    />
+    <BaseCheckbox
+      label="Отсортировать по году"
+      name="year"
+      v-model="moviesStore.yearCheckboxChecked"
+    />
+  </div>
   <HorizontalRule />
   <AnimatedLoader v-if="moviesStore.loading" />
   <NotFound v-else-if="moviesStore.movies.length === 0" />
@@ -19,7 +32,7 @@ moviesStore.fetchMovies()
     class="cards"
   >
     <MovieCard
-      v-for="m in moviesStore.movies"
+      v-for="m in moviesStore.sortedMovies"
       :key="m.id"
       :poster="m.poster"
       :title="m.title"
@@ -47,5 +60,11 @@ moviesStore.fetchMovies()
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.checkboxes {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 16px;
 }
 </style>
