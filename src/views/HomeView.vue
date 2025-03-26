@@ -27,9 +27,11 @@ moviesStore.fetchMovies()
   <HorizontalRule />
   <AnimatedLoader v-if="moviesStore.loading" />
   <NotFound v-else-if="moviesStore.movies.length === 0" />
-  <div
+  <TransitionGroup
     v-else
+    tag="div"
     class="cards"
+    name="list"
   >
     <MovieCard
       v-for="m in moviesStore.sortedMovies"
@@ -45,7 +47,7 @@ moviesStore.fetchMovies()
       :animated-hover="true"
       :link="'/movie/' + m.id"
     />
-  </div>
+  </TransitionGroup>
 </template>
 
 <style>
@@ -66,5 +68,10 @@ moviesStore.fetchMovies()
   display: flex;
   gap: 32px;
   margin-bottom: 16px;
+}
+
+.list-move {
+  transition: all .3s ease-out !important;
+  transition-delay: .08s;
 }
 </style>
