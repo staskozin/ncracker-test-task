@@ -1,35 +1,27 @@
-# .
+# Тестовое задание в Наткрекер
 
-This template should help get you started developing with Vue 3 in Vite.
+Проект создан с помощью [create-vue](https://github.com/vuejs/create-vue).
 
-## Recommended IDE Setup
+[Посмотреть вживую](https://ncracker.staskozin.ru/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+[![Скриншот макета](screenshot.png)](https://ncracker.staskozin.ru/)
 
-## Customize configuration
+## Команды
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+### Установка зависимостей
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Запуск в режиме разработки
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Сборка в продакшен
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
